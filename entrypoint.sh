@@ -27,7 +27,7 @@ fi
 echo "Git Checkout"
 
 if test -f $file_name; then
-    content=$(cat $file_name)
+    content=$(sed 's/^VERSION=//g' $file_name)
 else
     content=$(echo "-- File doesn't exist --")
 fi
@@ -63,7 +63,7 @@ echo "\nOld Ver: $oldver"
 echo "\nUpdated version: $newver" 
 
 newcontent=$(echo ${content/$oldver/$newver})
-echo $newcontent > $file_name
+echo $newcontent | sed 's/^.*/VERSION=&/g' > $file_name
 
 git add -A 
 git commit -m "Incremented to ${newver}"  -m "[skip ci]"
