@@ -9,7 +9,7 @@ git config --global user.name "Bump-N-Tag App"
 [ "x${GITHUB_EVENT_NAME}x" = "xpushx" ] || { GITHUB_REF=${GITHUB_HEAD_REF} && git checkout ${GITHUB_REF}; }
 
 # bump version ...
-N=3 && FILE="${1:-VERSION}" && BUMP_A=$(cat "${FILE}") && TMPFILE="$(mktemp --tmpdir version.XXXXXX)" \
+N=3 && FILE="${1:-VERSION}" && BUMP_A=$(cat "${FILE}") && TMPFILE="$(mktemp version.XXXXXX)" \
 && ( tr . \\n | sed -r $N' s/^(.*)([0-9]+)(.*)/echo \1$(echo 1+\2 | bc)\3/ge' && seq 1 $N ) \
 < "${FILE}" | head -n3 | tr \\n . | sed 's/\.*$/\n/g' \
 > "$TMPFILE" && mv "$TMPFILE" "${FILE}" && BUMP_B=$(cat "${FILE}") && echo -e "Bumped: ${BUMP_A} -> ${BUMP_B}"
