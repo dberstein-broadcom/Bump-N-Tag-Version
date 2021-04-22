@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/sh
 set -e
 
 file_name=$1
@@ -49,7 +49,7 @@ minor=$(echo $extract_string | cut -d'.' -f2)
 patch=$(echo $extract_string | cut -d'.' -f3)
 build=$(echo $extract_string | cut -d'.' -f4)
 
-if [[ $build = "" ]]; then
+if [ -z "$build" ]; then
     oldver=$(echo $major.$minor.$patch)
     patch=$(expr $patch + 1)
     newver=$(echo $major.$minor.$patch)
