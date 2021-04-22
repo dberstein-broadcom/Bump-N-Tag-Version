@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash -l
 set -e
 
 file_name=$1
