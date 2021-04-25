@@ -2,7 +2,7 @@
 FROM alpine:3.13
 
 # Install git package
-RUN apk --no-cache upgarde \
+RUN apk --no-cache upgrade \
  && add --no-cache git sed
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
